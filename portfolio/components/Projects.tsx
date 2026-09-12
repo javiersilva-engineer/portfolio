@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { projects } from "@/data/projects";
 import { Section, SectionLabel } from "@/components/ui/Section";
 import { Placeholder } from "@/components/ui/Placeholder";
@@ -22,7 +23,26 @@ export function Projects() {
               key={project.slug}
               className={`grid gap-8 lg:grid-cols-2 lg:gap-14 ${reversed ? "lg:[&>*:first-child]:order-2" : ""}`}
             >
-              <Placeholder label={project.cover.placeholderLabel} />
+              {project.cover.image ? (
+                <figure className="group overflow-hidden rounded-[4px] border border-ink-border bg-ink-800">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={project.cover.image.src}
+                      alt={project.cover.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover object-top transition duration-500 group-hover:scale-[1.025]"
+                    />
+                  </div>
+                  {project.cover.image.caption && (
+                    <figcaption className="border-t border-ink-border px-4 py-3 font-mono text-[12px] text-paper-500">
+                      {project.cover.image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ) : (
+                <Placeholder label={project.cover.placeholderLabel ?? "Imagen pendiente"} />
+              )}
               <div className="flex flex-col justify-center">
                 <p className="font-mono text-[13px] text-signal">{project.role}</p>
                 <h3 className="mt-2 font-display text-[26px] font-semibold text-paper-100">
