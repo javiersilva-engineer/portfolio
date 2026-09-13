@@ -2,19 +2,24 @@ export type DiagramStep = {
   label: string;
 };
 
+export type Contribution = {
+  title: string;
+  description: string;
+  diagram?: DiagramStep[];
+};
+
 export type ExperienceEntry = {
   slug: string;
   company: string;
   role: string;
   period: string;
   location?: string;
+  context: string;
   summary: string;
-  contributions: {
-    title: string;
-    description: string;
-    diagram?: DiagramStep[];
-  }[];
+  emphasis?: string;
+  contributions: Contribution[];
   technologies: string[];
+  focusTechnologies?: string[];
 };
 
 export const experience: ExperienceEntry[] = [
@@ -24,25 +29,35 @@ export const experience: ExperienceEntry[] = [
     role: "Desarrollador Full Stack",
     period: "Mayo 2026 — Actualidad",
     location: "Alicante, España",
+    context: "Asistentes conversacionales, plataforma propia e integración de IA",
     summary:
-      "Desarrollo y evolución de asistentes conversacionales y de la plataforma de la empresa: comprensión de consultas, comportamiento de los asistentes, integración de modelos de IA y de servicios externos, backend y automatización.",
+      "Desarrollo y mejora de asistentes conversacionales y funcionalidades de plataforma: comprensión de consultas, comportamiento de respuestas, integración de modelos de IA, backend e integración de servicios.",
+    emphasis:
+      "Trabajo orientado a convertir lenguaje natural en comportamiento útil dentro de productos conversacionales reales.",
     contributions: [
       {
         title: "Migración de proyectos a la plataforma propia",
         description:
-          "Participación en la migración de proyectos desarrollados inicialmente con Lovable hacia la arquitectura y plataforma de la empresa, adaptando el código y la estructura al stack interno.",
+          "Migración de proyectos desarrollados inicialmente con Lovable hacia la plataforma y arquitectura utilizada por la empresa.",
       },
       {
-        title: "Servicio de Text-to-Query (NL-to-SQL)",
+        title: "Text-to-Query sobre datos estructurados",
         description:
-          "Colaboración en el desarrollo de un servicio que traduce preguntas en lenguaje natural a consultas sobre bases de datos, permitiendo que el asistente responda con información precisa extraída directamente de los datos.",
+          "Colaboración en un servicio que transforma preguntas de usuarios en lenguaje natural en consultas a bases de datos para recuperar información y construir respuestas del asistente.",
         diagram: [
+          { label: "Usuario" },
           { label: "Pregunta en lenguaje natural" },
-          { label: "Interpretación de la intención" },
-          { label: "Generación de la consulta" },
+          { label: "Interpretación" },
+          { label: "Generación de consulta" },
+          { label: "Consulta a base de datos" },
           { label: "Recuperación de datos" },
           { label: "Respuesta del asistente" },
         ],
+      },
+      {
+        title: "Evolución de asistentes y plataforma",
+        description:
+          "Mejoras en comprensión de consultas, comportamiento de respuestas, funcionalidades de plataforma, backend e integración de servicios.",
       },
     ],
     technologies: [
@@ -63,6 +78,7 @@ export const experience: ExperienceEntry[] = [
       "Mistral",
       "n8n",
     ],
+    focusTechnologies: ["Node.js", "TypeScript", "Fastify", "PostgreSQL", "Prisma", "MongoDB", "Redis", "Docker", "OpenAI / LLMs", "embeddings", "n8n"],
   },
   {
     slug: "lucentia",
@@ -70,8 +86,11 @@ export const experience: ExperienceEntry[] = [
     role: "Desarrollador Full Stack",
     period: "Octubre 2025 — Febrero 2026",
     location: "Alicante, España",
+    context: "Realidad virtual aplicada a sesiones supervisadas por profesionales",
     summary:
-      "Desarrollo tecnológico dentro de un proyecto de realidad virtual orientado a terapias psicológicas con menores y al apoyo en la evaluación de posibles casos de TDAH, siempre bajo la supervisión de un profesional de la psicología. Mi trabajo se centró en la capa tecnológica del sistema, no en la evaluación clínica.",
+      "Desarrollo tecnológico dentro de un proyecto de realidad virtual relacionado con terapias psicológicas y evaluación de posibles casos de TDAH en menores, siempre bajo supervisión profesional.",
+    emphasis:
+      "Mi participación fue tecnológica: interfaz de control, comunicación, TTS y conexión con el entorno de realidad virtual. No incluye diagnóstico médico.",
     contributions: [
       {
         title: "Avatar virtual del psicólogo",
@@ -81,11 +100,13 @@ export const experience: ExperienceEntry[] = [
       {
         title: "Comunicación psicólogo ↔ entorno VR",
         description:
-          "Desarrollo del sistema de comunicación entre el profesional y el usuario dentro del entorno virtual: transmisión de voz por micrófono y una alternativa de texto, convertida automáticamente a voz mediante un servicio de Text-to-Speech (TTS) integrado para reproducirse dentro de la experiencia.",
+          "Sistema de comunicación entre el profesional y el usuario dentro de VR: voz por micrófono desde el exterior y mensajes escritos convertidos a voz mediante Text-to-Speech.",
         diagram: [
-          { label: "Interfaz de control (psicólogo)" },
-          { label: "Mensaje: voz o texto" },
-          { label: "Servicio Text-to-Speech" },
+          { label: "Psicólogo" },
+          { label: "Interfaz de control" },
+          { label: "Micrófono o mensaje escrito" },
+          { label: "Servicio TTS" },
+          { label: "Generación de voz" },
           { label: "Entorno de realidad virtual" },
         ],
       },
@@ -95,6 +116,7 @@ export const experience: ExperienceEntry[] = [
           "Desarrollo de la interfaz destinada a los psicólogos, desde la que podían controlar aspectos de la sesión, interactuar con el entorno virtual, comunicarse con el usuario y consultar información de sesiones anteriores.",
       },
     ],
-    technologies: ["Realidad virtual", "Text-to-Speech (TTS)"],
+    technologies: ["Realidad virtual", "Text-to-Speech (TTS)", "Interfaz de control", "Comunicación en VR"],
+    focusTechnologies: ["Realidad virtual", "Text-to-Speech", "Interfaz de control", "Comunicación en VR"],
   },
 ];
