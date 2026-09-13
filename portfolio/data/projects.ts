@@ -20,6 +20,10 @@ export type ProjectSection = {
     text: string;
   }[];
   layout?: "overview" | "media" | "architecture" | "algorithm";
+  cta?: {
+    label: string;
+    note: string;
+  };
 };
 
 export type Project = {
@@ -275,60 +279,130 @@ export const projects: Project[] = [
   {
     slug: "louv",
     name: "LOUV",
-    tagline: "Configurador 3D de anillos con un asistente que actúa sobre el modelo",
+    tagline: "Personalización 3D de anillos con IA conversacional integrada",
     role: "Integración de IA conversacional y motor 3D",
     featured: true,
-    cover: { placeholderLabel: "PLACEHOLDER: captura del configurador 3D de LOUV" },
+    cover: {
+      image: {
+        src: "/images/louv/editor.png",
+        alt: "Editor 3D de LOUV para personalizar un anillo en tiempo real",
+        width: 1359,
+        height: 594,
+        caption: "Editor 3D interactivo de LOUV",
+        frame: "desktop",
+      },
+    },
+    heroIntro:
+      "LOUV es una plataforma de personalización de anillos con un editor 3D interactivo. Mi aportación principal fue Luna, un asistente conversacional conectado al editor para transformar peticiones en lenguaje natural en cambios visibles sobre el anillo.",
     highlights: [
-      "Motor 3D en tiempo real para diseñar y personalizar un anillo",
-      "Asistente conversacional propio con Rasa y Groq",
-      "El chatbot no solo responde: modifica el modelo 3D en tiempo real",
+      "Editor 3D interactivo para personalizar elementos del anillo",
+      "Luna, asistente conversacional desarrollado con Rasa y Groq",
+      "Integración entre lenguaje natural, lógica de acción y actualización del editor 3D",
     ],
-    technologies: ["Rasa", "Groq", "Motor 3D (personalización en tiempo real)"],
+    technologies: ["Rasa", "Groq", "IA conversacional", "Editor 3D"],
     liveUrl: "https://louv.ovh",
     githubUrl: undefined,
-    videoPlaceholder: "PLACEHOLDER: vídeo de demostración de LOUV",
     sections: [
       {
         heading: "Qué es LOUV",
         body: [
-          "LOUV es una plataforma disponible en louv.ovh que incorpora un motor 3D para diseñar y personalizar un anillo: el usuario modifica gemas, engastes, forma y materiales, y ve los cambios reflejados directamente en el visor 3D.",
+          "LOUV es una plataforma de personalización de anillos con un editor 3D interactivo. El usuario puede modificar el diseño y visualizar el resultado en tiempo real dentro del propio visor.",
         ],
+        images: [
+          {
+            src: "/images/louv/landing-limpia.png",
+            alt: "Página de presentación de LOUV enfocada en la personalización de anillos",
+            width: 1344,
+            height: 596,
+            caption: "Plataforma LOUV",
+            frame: "desktop",
+          },
+        ],
+        layout: "media",
       },
       {
-        heading: "Mi aportación",
+        heading: "Editor 3D y personalización",
         body: [
-          "Mi trabajo en LOUV se centró en la inteligencia artificial: el desarrollo de un asistente conversacional y, sobre todo, su integración directa con el motor 3D del configurador.",
+          "El editor permite modificar elementos del anillo como gemas, materiales, engastes, base, forma y otros detalles del diseño, viendo los cambios reflejados directamente en el visor 3D.",
         ],
+        images: [
+          {
+            src: "/images/louv/editor.png",
+            alt: "Editor 3D de LOUV con opciones de personalización del anillo",
+            width: 1359,
+            height: 594,
+            caption: "Personalización en el editor 3D",
+            frame: "desktop",
+          },
+          {
+            src: "/images/louv/editor-3d-packaging.webp",
+            alt: "Vista del editor 3D de LOUV con opciones de diseño y presentación del anillo",
+            width: 1359,
+            height: 627,
+            caption: "Vista del configurador 3D",
+            frame: "desktop",
+          },
+        ],
+        layout: "media",
       },
       {
-        heading: "Asistente conversacional",
+        heading: "Luna, el asistente conversacional",
         body: [
-          "Desarrollé un chatbot con Rasa para la comprensión de lenguaje natural y Groq como motor de inferencia, permitiendo al usuario realizar consultas y recibir respuestas del asistente dentro de la plataforma.",
+          "Luna fue desarrollado para permitir interacción en lenguaje natural dentro de LOUV. Mi principal aportación fue conectar el asistente con el editor 3D para que no se limitara a responder consultas, sino que pudiera traducir peticiones del usuario en acciones sobre el anillo.",
         ],
+        images: [
+          {
+            src: "/images/louv/chatbot-editor-clean.webp",
+            alt: "Chatbot Luna integrado junto al editor 3D de LOUV",
+            width: 1359,
+            height: 629,
+            caption: "Luna integrado en la experiencia del editor",
+            frame: "desktop",
+          },
+        ],
+        layout: "media",
       },
       {
-        heading: "IA conectada al motor 3D",
+        heading: "Integración chatbot ↔ editor 3D",
         body: [
-          "La parte más relevante del proyecto: el usuario puede pedir en lenguaje natural que el asistente modifique el anillo que está diseñando (por ejemplo, cambiar una gema o un material). El chatbot no se limita a responder — actúa sobre la aplicación y modifica en tiempo real el objeto que el usuario está configurando.",
+          "El valor diferencial de Luna está en la conexión entre conversación y acción. El flujo transforma una petición escrita por el usuario en una modificación concreta que el editor 3D aplica sobre el anillo en tiempo real.",
         ],
         diagram: [
+          { label: "Usuario" },
           { label: "Petición en lenguaje natural" },
-          { label: "Interpretación de la intención (Rasa + Groq)" },
-          { label: "Comunicación con el sistema de personalización" },
-          { label: "Ejecución de la acción" },
-          { label: "Actualización del modelo 3D en tiempo real" },
+          { label: "Luna interpreta la intención" },
+          { label: "Sistema determina la modificación" },
+          { label: "Editor 3D aplica el cambio" },
+          { label: "Anillo actualizado en tiempo real" },
         ],
+        layout: "algorithm",
       },
       {
-        heading: "Resultado",
+        heading: "Demostración",
         body: [
-          "Un configurador donde la capa conversacional y la capa 3D dejan de estar separadas: la IA conversacional, el procesamiento de lenguaje natural, la lógica de aplicación y el motor 3D funcionan como un único sistema en tiempo real.",
+          "La estructura del case study queda preparada para incorporar una demostración en vídeo cuando esté disponible la URL final.",
         ],
+        cta: {
+          label: "Ver demo del chatbot",
+          note: "Vídeo pendiente de publicación",
+        },
       },
       {
-        heading: "Aprendizajes",
-        body: ["TODO: añadir aprendizajes concretos del proyecto."],
+        heading: "Información complementaria",
+        body: [
+          "Además del editor y Luna, el proyecto incluye superficies complementarias de gestión y seguimiento. Las presento como contexto secundario, manteniendo el foco del case study en la integración conversacional con el editor 3D.",
+        ],
+        images: [
+          {
+            src: "/images/louv/panel-estadisticas.webp",
+            alt: "Panel de estadísticas de LOUV como información complementaria de la plataforma",
+            width: 1006,
+            height: 575,
+            caption: "Panel complementario de la plataforma",
+            frame: "desktop",
+          },
+        ],
+        layout: "media",
       },
     ],
   },

@@ -105,6 +105,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     ))}
                   </ul>
                 )}
+                {section.cta && <SectionCta label={section.cta.label} note={section.cta.note} />}
                 {section.images && <ProjectImageGallery images={section.images} layout={section.layout} />}
                 {section.diagram && (
                   <div className="mt-8">
@@ -144,6 +145,20 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </Section>
     </>
+  );
+}
+
+function SectionCta({ label, note }: { label: string; note: string }) {
+  return (
+    <div className="mt-8 flex max-w-2xl flex-col items-start gap-3 border border-ink-border bg-ink-900 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p className="font-mono text-[12px] text-signal">Demo</p>
+        <p className="mt-1 text-[14.5px] text-paper-300">{note}</p>
+      </div>
+      <span className="inline-flex cursor-not-allowed items-center rounded-[3px] border border-ink-border px-5 py-3 text-[15px] font-medium text-paper-500">
+        {label}
+      </span>
+    </div>
   );
 }
 
