@@ -13,6 +13,8 @@ type ModelViewerModalProps = {
 export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const viewerRef = useRef<ModelViewerElement | null>(null);
+  const previousBodyOverflowRef = useRef("");
+  const previousBodyPaddingRightRef = useRef("");
   const [viewerReady, setViewerReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -67,11 +69,19 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    previousBodyOverflowRef.current = document.body.style.overflow;
+    previousBodyPaddingRightRef.current = document.body.style.paddingRight;
+
     dialog.showModal();
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousBodyOverflowRef.current;
+      document.body.style.paddingRight = previousBodyPaddingRightRef.current;
       if (dialog.open) dialog.close();
     };
   }, []);
@@ -154,7 +164,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto w-[min(1120px,calc(100vw-24px))] max-w-none rounded-[4px] border border-ink-border bg-ink-900 p-0 text-paper-100 backdrop:bg-ink-950/85"
+      className="m-auto max-h-[calc(100dvh-24px)] w-[min(1120px,calc(100vw-24px))] max-w-none overflow-x-hidden overflow-y-auto rounded-[4px] border border-ink-border bg-ink-900 p-0 text-paper-100 backdrop:bg-ink-950/85"
       aria-labelledby={`${item.id}-viewer-title`}
       onCancel={(event) => {
         event.preventDefault();
@@ -164,7 +174,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
         if (event.target === dialogRef.current) close();
       }}
     >
-      <div className="max-h-[calc(100vh-24px)] overflow-auto">
+      <div>
         <div className="flex items-start justify-between gap-4 border-b border-ink-border px-4 py-4 sm:px-5">
           <div>
             <p className="font-mono text-[12px] text-signal">Visor 3D</p>
