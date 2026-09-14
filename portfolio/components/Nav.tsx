@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/data/site";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { href: "/#about", label: "Sobre mí" },
@@ -31,6 +32,7 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           <a
             href={site.links.github}
             target="_blank"

@@ -164,7 +164,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto max-h-[calc(100dvh-24px)] w-[min(1120px,calc(100vw-24px))] max-w-none overflow-x-hidden overflow-y-auto rounded-[4px] border border-ink-border bg-ink-900 p-0 text-paper-100 backdrop:bg-ink-950/85"
+      className="m-auto max-h-[calc(100dvh-24px)] w-[min(1120px,calc(100vw-24px))] max-w-none overflow-x-hidden overflow-y-auto rounded-[4px] border border-ink-border bg-ink-900 p-0 text-paper-100 backdrop:bg-overlay/75"
       aria-labelledby={`${item.id}-viewer-title`}
       onCancel={(event) => {
         event.preventDefault();
@@ -192,7 +192,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
         </div>
 
         <div className="grid gap-5 p-4 sm:p-5 lg:grid-cols-[minmax(0,1fr)_260px]">
-          <div className="relative min-h-[360px] overflow-hidden rounded-[4px] border border-ink-border bg-ink-950 sm:min-h-[520px]">
+          <div className="relative min-h-[360px] overflow-hidden rounded-[4px] border border-ink-border bg-model-viewport sm:min-h-[520px]">
             <Image
               src={item.image.src}
               alt={item.image.alt}
@@ -220,7 +220,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
                 shadow-intensity="0.8"
                 exposure="1"
                 interaction-prompt="auto"
-                class="h-full min-h-[360px] w-full bg-ink-950 sm:min-h-[520px]"
+                class="h-full min-h-[360px] w-full bg-model-viewport sm:min-h-[520px]"
                 aria-label={`Modelo 3D interactivo: ${item.title}`}
               />
             )}

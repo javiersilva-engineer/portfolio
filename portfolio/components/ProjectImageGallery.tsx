@@ -75,7 +75,7 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
 
       {activeImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-950/90 px-4 py-6 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/75 px-4 py-6 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}

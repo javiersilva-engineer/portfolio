@@ -7,22 +7,29 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          950: "#0B0D0F",
-          900: "#12151A",
-          800: "#1A1E24",
-          700: "#242931",
-          600: "#2E343D",
-          border: "#2A2F36",
+          950: "rgb(var(--color-ink-950) / <alpha-value>)",
+          900: "rgb(var(--color-ink-900) / <alpha-value>)",
+          800: "rgb(var(--color-ink-800) / <alpha-value>)",
+          700: "rgb(var(--color-ink-700) / <alpha-value>)",
+          600: "rgb(var(--color-ink-600) / <alpha-value>)",
+          border: "rgb(var(--color-ink-border) / <alpha-value>)",
         },
         paper: {
-          100: "#EDEFF2",
-          300: "#C7CCD2",
-          500: "#9AA3AD",
+          100: "rgb(var(--color-paper-100) / <alpha-value>)",
+          300: "rgb(var(--color-paper-300) / <alpha-value>)",
+          500: "rgb(var(--color-paper-500) / <alpha-value>)",
         },
         signal: {
-          DEFAULT: "#E08A3E",
-          dim: "#B96E2E",
-          soft: "rgba(224, 138, 62, 0.12)",
+          DEFAULT: "rgb(var(--color-signal) / <alpha-value>)",
+          dim: "rgb(var(--color-signal-dim) / <alpha-value>)",
+          soft: "rgb(var(--color-signal) / 0.12)",
+          foreground: "rgb(var(--color-signal-foreground) / <alpha-value>)",
+        },
+        overlay: {
+          DEFAULT: "rgb(var(--color-overlay) / <alpha-value>)",
+        },
+        model: {
+          viewport: "rgb(var(--color-model-viewport) / <alpha-value>)",
         },
       },
       fontFamily: {
@@ -36,7 +43,7 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-lines":
-          "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          "linear-gradient(to right, rgb(var(--color-grid) / var(--grid-opacity)) 1px, transparent 1px), linear-gradient(to bottom, rgb(var(--color-grid) / var(--grid-opacity)) 1px, transparent 1px)",
       },
     },
   },
