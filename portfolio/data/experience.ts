@@ -55,9 +55,9 @@ export const experience: ExperienceEntry[] = [
         ],
       },
       {
-        title: "Evolución de asistentes y plataforma",
+        title: "Automatización de procesos mediante n8n",
         description:
-          "Mejoras en comprensión de consultas, comportamiento de respuestas, funcionalidades de plataforma, backend e integración de servicios.",
+          "Creación de workflows para automatizar procesos e integrar distintos servicios y fuentes de información.",
       },
     ],
     technologies: [
@@ -83,14 +83,14 @@ export const experience: ExperienceEntry[] = [
   {
     slug: "lucentia",
     company: "Lucentia Research Group",
-    role: "Desarrollador Full Stack",
+    role: "Desarrollador front-end",
     period: "Octubre 2025 — Febrero 2026",
     location: "Alicante, España",
-    context: "Realidad virtual aplicada a sesiones supervisadas por profesionales",
+    context: "Realidad virtual con Unity para sesiones supervisadas por profesionales",
     summary:
-      "Desarrollo tecnológico dentro de un proyecto de realidad virtual relacionado con terapias psicológicas y evaluación de posibles casos de TDAH en menores, siempre bajo supervisión profesional.",
+      "Desarrollo tecnológico dentro de un proyecto de realidad virtual en Unity, ejecutado en dispositivos Meta Quest, relacionado con sesiones psicológicas supervisadas y evaluación de posibles casos de TDA/TDAH en menores.",
     emphasis:
-      "Mi participación fue tecnológica: interfaz de control, comunicación, TTS y conexión con el entorno de realidad virtual. No incluye diagnóstico médico.",
+      "Mi participación fue tecnológica: interfaz de control, comunicación, TTS, Unity y conexión con el entorno de realidad virtual. No incluye diagnóstico médico.",
     contributions: [
       {
         title: "Avatar virtual del psicólogo",
@@ -105,9 +105,10 @@ export const experience: ExperienceEntry[] = [
           { label: "Psicólogo" },
           { label: "Interfaz de control" },
           { label: "Micrófono o mensaje escrito" },
-          { label: "Servicio TTS" },
-          { label: "Generación de voz" },
+          { label: "Comunicación / TTS" },
+          { label: "Unity" },
           { label: "Entorno de realidad virtual" },
+          { label: "Usuario con Meta Quest" },
         ],
       },
       {
@@ -116,7 +117,7 @@ export const experience: ExperienceEntry[] = [
           "Desarrollo de la interfaz destinada a los psicólogos, desde la que podían controlar aspectos de la sesión, interactuar con el entorno virtual, comunicarse con el usuario y consultar información de sesiones anteriores.",
       },
     ],
-    technologies: ["Realidad virtual", "Text-to-Speech (TTS)", "Interfaz de control", "Comunicación en VR"],
-    focusTechnologies: ["Realidad virtual", "Text-to-Speech", "Interfaz de control", "Comunicación en VR"],
+    technologies: ["Unity", "Realidad virtual", "Meta Quest", "Text-to-Speech (TTS)", "Interfaz de control", "Comunicación en VR"],
+    focusTechnologies: ["Unity", "Realidad virtual", "Text-to-Speech", "Interfaz de control", "Comunicación en VR", "Meta Quest"],
   },
 ];

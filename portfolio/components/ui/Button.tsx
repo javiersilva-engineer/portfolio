@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center gap-2 rounded-[3px] px-5 py-3 text-[15px] font-medium transition-colors duration-150";
+  "inline-flex items-center gap-2 rounded-[3px] px-5 py-3 text-[15px] font-medium transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal";
 
 const variants: Record<string, string> = {
   solid: "bg-signal text-ink-950 hover:bg-signal-dim",

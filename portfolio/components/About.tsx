@@ -6,15 +6,13 @@ export function About() {
       <SectionLabel>Sobre mí</SectionLabel>
       <div className="max-w-prose">
         <p className="text-[18px] leading-relaxed text-paper-100 sm:text-[20px]">
-          Graduado en Ingeniería Multimedia por la Universidad de Alicante. Mi perfil combina desarrollo
-          de software, inteligencia artificial y tecnologías multimedia: aplicaciones web, backend,
-          asistentes conversacionales, modelos de lenguaje, automatización, realidad virtual e
-          integración de servicios.
+          Ingeniero Multimedia por la Universidad de Alicante, con experiencia en desarrollo de software,
+          inteligencia artificial aplicada y tecnologías interactivas.
         </p>
         <p className="mt-5 text-[16px] leading-relaxed text-paper-500">
-          No me presento como experto absoluto en todas las áreas anteriores; me interesa poder moverme
-          entre las distintas capas de un producto — interfaz, lógica de negocio, integración de
-          servicios, bases de datos e IA — y entender cómo se conectan entre sí.
+          He trabajado en aplicaciones web, asistentes conversacionales, sistemas de consulta de datos
+          mediante lenguaje natural, automatización de procesos, realidad virtual e integración de IA con
+          aplicaciones y entornos 3D.
         </p>
       </div>
     </Section>

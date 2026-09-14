@@ -8,7 +8,7 @@ export function Hero() {
         <div>
           <p className="mb-6 font-mono text-[13px] text-signal">{site.role}</p>
           <h1 className="font-display text-[44px] font-semibold leading-[1.05] text-paper-100 sm:text-[64px]">
-            Javier Silva
+            {site.name}
           </h1>
           <p className="mt-6 max-w-prose text-[17px] leading-relaxed text-paper-300 sm:text-[18px]">
             {site.tagline}

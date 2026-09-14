@@ -41,7 +41,7 @@ export const gallery3d: Gallery3DItem[] = [
     title: "Sala temática de cine",
     description: "Escena interior realizada en Blender.",
     image: {
-      src: "/images/3d/cinema-room.png",
+      src: "/images/3d/cinema-room.webp",
       alt: "Render de una sala temática de cine modelada en Blender",
       width: 3840,
       height: 2160,

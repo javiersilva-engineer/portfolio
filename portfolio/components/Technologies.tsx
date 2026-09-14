@@ -20,6 +20,23 @@ export function Technologies() {
                 </li>
               ))}
             </ul>
+            {group.capabilities && (
+              <div className="mt-5">
+                <p className="font-mono text-[12px] text-paper-500">
+                  {group.capabilitiesLabel ?? "Capacidades"}
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {group.capabilities.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-[3px] border border-ink-border px-2.5 py-1 font-mono text-[12px] text-paper-500"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
       </div>

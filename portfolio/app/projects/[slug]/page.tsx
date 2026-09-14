@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { projects } from "@/data/projects";
+import { site } from "@/data/site";
 import type { ProjectImage, ProjectSection } from "@/data/projects";
-import { Section, SectionLabel } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
@@ -17,9 +18,24 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
+  const title = `${project.name} — ${project.tagline}`;
+  const description = project.tagline;
+  const url = `${site.url}/projects/${project.slug}`;
+
   return {
-    title: `${project.name} — ${project.tagline}`,
-    description: project.tagline,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: site.name,
+      locale: "es_ES",
+      type: "article",
+    },
   };
 }
 
@@ -56,11 +72,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 <Button href={project.githubUrl} variant="outline" external>
                   Ver en GitHub
                 </Button>
-              ) : (
-                <span className="font-mono text-[12.5px] text-paper-500">
-                  Repositorio pendiente de publicación
-                </span>
-              )}
+              ) : null}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -105,7 +117,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     ))}
                   </ul>
                 )}
-                {section.cta && <SectionCta label={section.cta.label} note={section.cta.note} />}
                 {section.images && <ProjectImageGallery images={section.images} layout={section.layout} />}
                 {section.diagram && (
                   <div className="mt-8">
@@ -124,13 +135,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </Section>
 
-      {project.videoPlaceholder && (
-        <Section className="pt-0">
-          <SectionLabel>Demostración</SectionLabel>
-          <Placeholder label={project.videoPlaceholder} aspect="aspect-video" kind="video" />
-        </Section>
-      )}
-
       <Section className="border-t border-ink-border/60">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[15px] text-paper-500">¿Quieres ver otro proyecto o hablar sobre este?</p>
@@ -145,20 +149,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </Section>
     </>
-  );
-}
-
-function SectionCta({ label, note }: { label: string; note: string }) {
-  return (
-    <div className="mt-8 flex max-w-2xl flex-col items-start gap-3 border border-ink-border bg-ink-900 p-5 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <p className="font-mono text-[12px] text-signal">Demo</p>
-        <p className="mt-1 text-[14.5px] text-paper-300">{note}</p>
-      </div>
-      <span className="inline-flex cursor-not-allowed items-center rounded-[3px] border border-ink-border px-5 py-3 text-[15px] font-medium text-paper-500">
-        {label}
-      </span>
-    </div>
   );
 }
 

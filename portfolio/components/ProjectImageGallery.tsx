@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import type { ProjectImage, ProjectSection } from "@/data/projects";
 
@@ -11,6 +11,8 @@ type ProjectImageGalleryProps = {
 
 export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps) {
   const [activeImage, setActiveImage] = useState<ProjectImage | null>(null);
+  const openerRef = useRef<HTMLButtonElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const titleId = useId();
   const hasDesktop = images.some((image) => image.frame === "desktop");
   const hasMobile = images.some((image) => image.frame === "mobile");
@@ -21,15 +23,26 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
   const mobileImages = images.filter((image) => image.frame === "mobile");
   const otherImages = images.filter((image) => image.frame !== "desktop" && image.frame !== "mobile");
 
+  const openImage = (image: ProjectImage, opener: HTMLButtonElement) => {
+    openerRef.current = opener;
+    setActiveImage(image);
+  };
+
+  const closeImage = () => {
+    setActiveImage(null);
+    window.setTimeout(() => openerRef.current?.focus(), 0);
+  };
+
   useEffect(() => {
     if (!activeImage) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveImage(null);
+      if (event.key === "Escape") closeImage();
     };
 
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
@@ -44,18 +57,18 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
           <>
             <div className="grid gap-5">
               {[...desktopImages, ...otherImages].map((image) => (
-                <ProjectImageFrame key={image.src} image={image} onOpen={() => setActiveImage(image)} />
+                <ProjectImageFrame key={image.src} image={image} onOpen={openImage} />
               ))}
             </div>
             <div className="grid content-start gap-5 sm:grid-cols-2 lg:grid-cols-1">
               {mobileImages.map((image) => (
-                <ProjectImageFrame key={image.src} image={image} onOpen={() => setActiveImage(image)} />
+                <ProjectImageFrame key={image.src} image={image} onOpen={openImage} />
               ))}
             </div>
           </>
         ) : (
           images.map((image) => (
-            <ProjectImageFrame key={image.src} image={image} onOpen={() => setActiveImage(image)} />
+            <ProjectImageFrame key={image.src} image={image} onOpen={openImage} />
           ))
         )}
       </div>
@@ -66,7 +79,7 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          onClick={() => setActiveImage(null)}
+          onClick={closeImage}
         >
           <div
             className="relative max-h-full w-full max-w-6xl overflow-auto rounded-[4px] border border-ink-border bg-ink-900 p-3 shadow-2xl"
@@ -77,9 +90,10 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
                 {activeImage.caption ?? activeImage.alt}
               </p>
               <button
+                ref={closeButtonRef}
                 type="button"
-                className="shrink-0 rounded-[3px] border border-ink-border px-3 py-1.5 font-mono text-[12px] text-paper-300 transition-colors hover:border-signal hover:text-signal"
-                onClick={() => setActiveImage(null)}
+                className="shrink-0 rounded-[3px] border border-ink-border px-3 py-1.5 font-mono text-[12px] text-paper-300 transition-colors hover:border-signal hover:text-signal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
+                onClick={closeImage}
               >
                 Cerrar
               </button>
@@ -119,7 +133,13 @@ function getGalleryClass({
   return "grid items-start gap-5 sm:grid-cols-2 xl:grid-cols-3";
 }
 
-function ProjectImageFrame({ image, onOpen }: { image: ProjectImage; onOpen: () => void }) {
+function ProjectImageFrame({
+  image,
+  onOpen,
+}: {
+  image: ProjectImage;
+  onOpen: (image: ProjectImage, opener: HTMLButtonElement) => void;
+}) {
   const isMobile = image.frame === "mobile";
   const isDiagram = image.frame === "diagram";
   const sizes = isMobile
@@ -133,7 +153,7 @@ function ProjectImageFrame({ image, onOpen }: { image: ProjectImage; onOpen: () 
       <button
         type="button"
         className="group block w-full rounded-[4px] border border-ink-border bg-ink-800 text-left transition-colors hover:border-signal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
-        onClick={onOpen}
+        onClick={(event) => onOpen(image, event.currentTarget)}
         aria-label={`Ampliar imagen: ${image.caption ?? image.alt}`}
       >
         <span className="block overflow-hidden rounded-t-[4px]">

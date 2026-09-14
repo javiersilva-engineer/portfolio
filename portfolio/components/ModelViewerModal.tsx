@@ -47,6 +47,13 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
+    setHasError(false);
+    setAnimationReady(false);
+    setIsPlaying(false);
+  }, [item.id]);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const updateMotionPreference = () => setReducedMotion(mediaQuery.matches);
 
@@ -70,8 +77,15 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
   }, []);
 
   useEffect(() => {
+    if (!viewerReady) return;
     const viewer = viewerRef.current;
     if (!viewer) return;
+
+    setIsLoading(true);
+    setHasError(false);
+    setAnimationReady(false);
+    setIsPlaying(false);
+
     let didFinish = false;
     const timeoutId = window.setTimeout(() => {
       if (!didFinish) {
@@ -114,7 +128,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
       viewer.removeEventListener("load", onLoad);
       viewer.removeEventListener("error", onError);
     };
-  }, [item]);
+  }, [item, viewerReady]);
 
   const close = () => {
     const dialog = dialogRef.current;
@@ -160,7 +174,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
           </div>
           <button
             type="button"
-            className="shrink-0 rounded-[3px] border border-ink-border px-3 py-2 font-mono text-[12px] text-paper-300 transition-colors hover:border-signal hover:text-signal"
+            className="shrink-0 rounded-[3px] border border-ink-border px-3 py-2 font-mono text-[12px] text-paper-300 transition-colors hover:border-signal hover:text-signal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
             onClick={close}
           >
             Cerrar
@@ -182,6 +196,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
 
             {viewerReady && !hasError && (
               <model-viewer
+                key={item.id}
                 ref={viewerRef}
                 src={item.model.src}
                 poster={item.image.src}
@@ -245,7 +260,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
                 <div className="mt-3 flex flex-wrap gap-3">
                   <button
                     type="button"
-                    className="rounded-[3px] border border-ink-border px-4 py-2 text-[14px] font-medium text-paper-100 transition-colors hover:border-signal hover:text-signal disabled:cursor-not-allowed disabled:text-paper-500"
+                    className="rounded-[3px] border border-ink-border px-4 py-2 text-[14px] font-medium text-paper-100 transition-colors hover:border-signal hover:text-signal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal disabled:cursor-not-allowed disabled:text-paper-500"
                     onClick={playAnimation}
                     disabled={!animationReady || isPlaying}
                   >
@@ -253,7 +268,7 @@ export function ModelViewerModal({ item, onClose }: ModelViewerModalProps) {
                   </button>
                   <button
                     type="button"
-                    className="rounded-[3px] border border-ink-border px-4 py-2 text-[14px] font-medium text-paper-100 transition-colors hover:border-signal hover:text-signal disabled:cursor-not-allowed disabled:text-paper-500"
+                    className="rounded-[3px] border border-ink-border px-4 py-2 text-[14px] font-medium text-paper-100 transition-colors hover:border-signal hover:text-signal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal disabled:cursor-not-allowed disabled:text-paper-500"
                     onClick={pauseAnimation}
                     disabled={!animationReady || !isPlaying}
                   >
