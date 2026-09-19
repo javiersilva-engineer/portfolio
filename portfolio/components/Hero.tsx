@@ -37,7 +37,7 @@ export function Hero() {
             <div aria-hidden className="absolute inset-x-5 top-5 h-px bg-signal/45" />
             <div aria-hidden className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink-950/80 to-transparent" />
             <div aria-hidden className="absolute right-5 top-8 h-20 w-px bg-ink-border" />
-            <div aria-hidden className="absolute left-5 top-10 font-mono text-[11px] text-paper-500/70">
+            <div aria-hidden className="absolute left-5 top-10 font-mono text-[11px] text-paper-500/90">
               01
             </div>
             <Image

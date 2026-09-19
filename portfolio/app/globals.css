@@ -108,6 +108,14 @@ body {
   background-size: 48px 48px;
 }
 
+html[data-theme="light"] .theme-toggle-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle-moon {
+  display: block;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   body,
   header,
