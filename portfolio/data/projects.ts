@@ -12,6 +12,11 @@ export type ProjectImage = {
 export type ProjectSection = {
   heading: string;
   body: string[];
+  video?: {
+    provider: "youtube";
+    id: string;
+    title: string;
+  };
   diagram?: DiagramStep[];
   bullets?: string[];
   images?: ProjectImage[];
@@ -19,7 +24,7 @@ export type ProjectSection = {
     label: string;
     text: string;
   }[];
-  layout?: "overview" | "media" | "architecture" | "algorithm";
+  layout?: "overview" | "media" | "architecture" | "algorithm" | "desktop-with-mobile-grid";
   cta?: {
     label: string;
     note: string;
@@ -224,7 +229,7 @@ export const projects: Project[] = [
             frame: "desktop",
           },
         ],
-        layout: "media",
+        layout: "desktop-with-mobile-grid",
       },
       {
         heading: "Arquitectura",
@@ -380,11 +385,12 @@ export const projects: Project[] = [
       {
         heading: "Demostración",
         body: [
-          "La estructura del case study queda preparada para incorporar una demostración en vídeo cuando esté disponible la URL final.",
+          "Demo del asistente Luna interactuando con el editor 3D de LOUV y aplicando cambios sobre el producto mediante instrucciones en lenguaje natural.",
         ],
-        cta: {
-          label: "Ver demo del chatbot",
-          note: "Vídeo pendiente de publicación",
+        video: {
+          provider: "youtube",
+          id: "qP47tkVvJWE",
+          title: "Demostración de LOUV y su asistente Luna",
         },
       },
       {

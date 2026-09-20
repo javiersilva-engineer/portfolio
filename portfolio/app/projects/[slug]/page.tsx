@@ -118,6 +118,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   </ul>
                 )}
                 {section.images && <ProjectImageGallery images={section.images} layout={section.layout} />}
+                {section.video && <ProjectVideo video={section.video} />}
                 {section.diagram && (
                   <div className="mt-8">
                     {section.layout === "algorithm" ? (
@@ -161,6 +162,26 @@ function SectionSummary({ items }: { items: NonNullable<ProjectSection["summary"
           <p className="mt-3 text-[14.5px] leading-relaxed text-paper-300">{item.text}</p>
         </div>
       ))}
+    </div>
+  );
+}
+
+function ProjectVideo({ video }: { video: NonNullable<ProjectSection["video"]> }) {
+  if (video.provider !== "youtube") return null;
+
+  return (
+    <div className="mt-8 max-w-4xl overflow-hidden rounded-[4px] border border-ink-border bg-ink-800">
+      <div className="aspect-video w-full">
+        <iframe
+          className="h-full w-full"
+          src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+          title={video.title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      </div>
     </div>
   );
 }

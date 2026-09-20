@@ -17,8 +17,15 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
   const hasDesktop = images.some((image) => image.frame === "desktop");
   const hasMobile = images.some((image) => image.frame === "mobile");
   const isArchitecture = layout === "architecture";
-  const isMixed = hasDesktop && hasMobile;
-  const galleryClass = getGalleryClass({ hasDesktop, hasMobile, isArchitecture, count: images.length });
+  const isDesktopWithMobileGrid = layout === "desktop-with-mobile-grid";
+  const isMixed = hasDesktop && hasMobile && !isDesktopWithMobileGrid;
+  const galleryClass = getGalleryClass({
+    hasDesktop,
+    hasMobile,
+    isArchitecture,
+    isDesktopWithMobileGrid,
+    count: images.length,
+  });
   const desktopImages = images.filter((image) => image.frame === "desktop");
   const mobileImages = images.filter((image) => image.frame === "mobile");
   const otherImages = images.filter((image) => image.frame !== "desktop" && image.frame !== "mobile");
@@ -53,7 +60,20 @@ export function ProjectImageGallery({ images, layout }: ProjectImageGalleryProps
   return (
     <>
       <div className={`mt-8 ${galleryClass}`}>
-        {isMixed ? (
+        {isDesktopWithMobileGrid ? (
+          <div className="grid gap-6">
+            <div className="mx-auto w-full max-w-4xl">
+              {[...desktopImages, ...otherImages].map((image) => (
+                <ProjectImageFrame key={image.src} image={image} onOpen={openImage} />
+              ))}
+            </div>
+            <div className="mx-auto grid w-full max-w-4xl justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {mobileImages.map((image) => (
+                <ProjectImageFrame key={image.src} image={image} onOpen={openImage} />
+              ))}
+            </div>
+          </div>
+        ) : isMixed ? (
           <>
             <div className="grid gap-5">
               {[...desktopImages, ...otherImages].map((image) => (
@@ -119,14 +139,17 @@ function getGalleryClass({
   hasDesktop,
   hasMobile,
   isArchitecture,
+  isDesktopWithMobileGrid,
   count,
 }: {
   hasDesktop: boolean;
   hasMobile: boolean;
   isArchitecture: boolean;
+  isDesktopWithMobileGrid: boolean;
   count: number;
 }) {
   if (isArchitecture) return "max-w-3xl";
+  if (isDesktopWithMobileGrid) return "max-w-4xl";
   if (hasDesktop && hasMobile) return "grid items-start gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(220px,0.72fr)]";
   if (hasDesktop && count === 1) return "max-w-4xl";
   if (hasDesktop) return "grid items-start gap-5 xl:grid-cols-2";
