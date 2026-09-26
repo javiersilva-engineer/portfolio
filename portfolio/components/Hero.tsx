@@ -54,7 +54,7 @@ export function Hero() {
           <div className="flex flex-col gap-4">
             <p className="text-[14.5px] leading-relaxed text-paper-500">
               Trabajo en las distintas capas de un producto: interfaz, backend, integración de servicios
-              y modelos de IA — con formación de base en tecnologías multimedia, 3D y realidad virtual.
+              y modelos de IA con formación de base en tecnologías multimedia, 3D y realidad virtual.
             </p>
             <div className="flex flex-wrap gap-2">
               {["Full stack", "IA aplicada", "Asistentes conversacionales", "3D / VR"].map((tag) => (
