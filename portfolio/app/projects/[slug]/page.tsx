@@ -18,12 +18,12 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
-  const title = `${project.name} — ${project.tagline}`;
-  const description = project.tagline;
+  const title = project.metadata?.title ?? `${project.name} — ${project.tagline}`;
+  const description = project.metadata?.description ?? project.tagline;
   const url = `${site.url}/projects/${project.slug}`;
 
   return {
-    title,
+    title: project.metadata?.title ? { absolute: project.metadata.title } : title,
     description,
     alternates: {
       canonical: url,

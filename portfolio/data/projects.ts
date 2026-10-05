@@ -35,6 +35,10 @@ export type Project = {
   slug: string;
   name: string;
   tagline: string;
+  metadata?: {
+    title?: string;
+    description?: string;
+  };
   role: string;
   featured: boolean;
   cover: {
@@ -409,6 +413,145 @@ export const projects: Project[] = [
           },
         ],
         layout: "media",
+      },
+    ],
+  },
+  {
+    slug: "molamazogames",
+    name: "MolaMazoGAMES",
+    tagline: "Plataforma web para publicación y gestión de assets digitales",
+    metadata: {
+      title: "MolaMazoGAMES | Javier Silva",
+      description:
+        "Plataforma web desarrollada con el stack MERN para publicación y gestión de assets digitales. Desarrollo frontend e integración con backend.",
+    },
+    role: "Proyecto académico en equipo — Desarrollo frontend",
+    featured: true,
+    cover: {
+      image: {
+        src: "/images/molamazogames/UA_PROJECT - frame at 0m1s.jpg",
+        alt: "Interfaz principal de MolaMazoGAMES con navegación por categorías de assets digitales",
+        width: 3840,
+        height: 2160,
+        caption: "Plataforma de assets digitales desarrollada con stack MERN",
+        frame: "desktop",
+      },
+    },
+    heroIntro:
+      "MolaMazoGAMES es una plataforma académica desarrollada en equipo con el stack MERN para publicar, explorar, filtrar y descargar assets digitales. Mi aportación se centró en el frontend, la autenticación, la gestión de usuarios y la integración con el backend para operaciones como la subida de assets.",
+    highlights: [
+      "Proyecto académico en equipo construido sobre el stack MERN",
+      "Frontend en React para navegación, autenticación y gestión de usuario",
+      "Integración con APIs del backend para consultar assets y gestionar subidas",
+    ],
+    technologies: ["React", "Frontend", "Integración de APIs", "Autenticación", "Gestión de usuarios", "MERN"],
+    githubUrl: undefined,
+    sections: [
+      {
+        heading: "Contexto",
+        body: [
+          "MolaMazoGAMES es una plataforma web orientada a la publicación y consulta de assets digitales de distintas categorías. El producto permite explorar contenido, filtrar resultados, consultar fichas de asset y realizar acciones asociadas a una cuenta de usuario.",
+          "Fue desarrollado como proyecto académico en equipo. Por eso el case study separa las funcionalidades del producto de mi responsabilidad concreta dentro del desarrollo.",
+        ],
+        summary: [
+          {
+            label: "Tipo",
+            text: "Proyecto académico en equipo.",
+          },
+          {
+            label: "Producto",
+            text: "Plataforma web para publicar, explorar, filtrar y descargar assets digitales.",
+          },
+          {
+            label: "Aportación",
+            text: "Desarrollo frontend, autenticación, gestión de usuario e integración con backend.",
+          },
+        ],
+        layout: "overview",
+      },
+      {
+        heading: "Funcionalidades principales",
+        body: [
+          "Como producto, la aplicación reúne flujos de navegación, búsqueda y gestión de assets digitales. Estas funcionalidades describen el alcance global de la plataforma, no una autoría individual de todo el sistema.",
+        ],
+        bullets: [
+          "Navegación por assets y categorías de contenido",
+          "Búsqueda y filtrado de assets",
+          "Registro e inicio de sesión de usuarios",
+          "Publicación y subida de assets",
+          "Consulta de información detallada de un asset",
+          "Gestión de cuenta y modificación de datos",
+          "Cambio de contraseña y opciones de cuenta",
+          "Historial de descargas",
+        ],
+      },
+      {
+        heading: "Mi contribución",
+        body: [
+          "Mi responsabilidad principal estuvo en el frontend de la aplicación. Trabajé sobre las interfaces y flujos de usuario en React, conectando la experiencia visual con los servicios expuestos por el backend.",
+        ],
+        summary: [
+          {
+            label: "Desarrollo frontend",
+            text: "Desarrollo de interfaces y flujos de usuario de la aplicación utilizando React.",
+          },
+          {
+            label: "Autenticación y usuario",
+            text: "Implementación desde frontend de registro, inicio de sesión, visualización y modificación de datos, gestión de contraseña y opciones de cuenta.",
+          },
+          {
+            label: "Integración con backend",
+            text: "Implementación de llamadas desde frontend hacia el backend, incluyendo el flujo de subida de assets y sus datos asociados.",
+          },
+        ],
+        layout: "overview",
+      },
+      {
+        heading: "Integración frontend-backend",
+        body: [
+          "El frontend consume servicios del backend mediante llamadas HTTP para obtener assets, autenticar usuarios, actualizar información de cuenta y enviar datos asociados a assets. En el flujo de subida verifiqué el uso de FormData para enviar archivos y metadatos desde React hacia los endpoints de archivos, antes de crear el asset con las referencias devueltas por el backend.",
+        ],
+        diagram: [
+          { label: "Usuario" },
+          { label: "React / Frontend" },
+          { label: "API / Backend" },
+          { label: "Node.js + Express" },
+          { label: "MongoDB" },
+        ],
+        layout: "algorithm",
+      },
+      {
+        heading: "Flujo de subida de assets",
+        body: [
+          "El usuario podía introducir información del asset, seleccionar categorías y etiquetas, escoger una imagen de portada y añadir archivos. Desde el frontend se preparaban los datos, se subían los archivos al backend y después se enviaba la información del asset para completar la publicación.",
+        ],
+        diagram: [
+          { label: "Formulario de asset" },
+          { label: "Frontend React" },
+          { label: "FormData con archivos y datos" },
+          { label: "Petición al backend" },
+          { label: "Respuesta con referencias" },
+          { label: "Actualización de interfaz" },
+        ],
+        layout: "algorithm",
+      },
+      {
+        heading: "Stack MERN",
+        body: [
+          "El proyecto utiliza el stack MERN como base técnica. En mi aportación el foco estuvo en React, la gestión de flujos de usuario y la integración del frontend con las APIs del backend.",
+        ],
+        bullets: ["MongoDB", "Express", "React", "Node.js"],
+      },
+      {
+        heading: "Demostración",
+        body: [
+          "Recorrido por las principales funcionalidades de MolaMazoGAMES, incluyendo navegación, gestión de assets, autenticación y funcionalidades de usuario.",
+        ],
+        video: {
+          provider: "youtube",
+          id: "F9kPziYR3mM",
+          title: "Demostración de MolaMazoGAMES",
+        },
       },
     ],
   },
