@@ -26,8 +26,8 @@ export const experience: ExperienceEntry[] = [
   {
     slug: "1millionbot",
     company: "1MillionBot",
-    role: "Desarrollador Full Stack",
-    period: "Mayo 2026 — Actualidad",
+    role: "Desarrollador de Software",
+    period: "Mayo 2026 — Septiembre 2026",
     location: "Alicante, España",
     context: "Asistentes conversacionales, plataforma propia e integración de IA",
     summary:
